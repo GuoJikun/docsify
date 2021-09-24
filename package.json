@@ -2,6 +2,9 @@
   "name": "juejin-markdown-theme-default",
   "private": true,
   "license": "MIT",
+  "scripts": {
+    "dev": "npx juejin-theme-devtool simplicity-green.scss"
+  },
   "dependencies": {
     "bytemd": "^1.2.0"
   }
