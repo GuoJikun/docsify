@@ -1,5 +1,6 @@
 $monospace-font: Menlo, Monaco, Consolas, "Courier New", monospace;
 $line-space: 1.6em;
+$color-primary: #42b983;
 
 .markdown-body {
   word-break: break-word;
@@ -102,19 +103,18 @@ $line-space: 1.6em;
 
   a {
     text-decoration: none;
-    color: #42b983;
+    color: $color-primary;
     line-height: 1.2em;
     &:hover,
     &:active {
-      color: rgba($color: #42b983, $alpha: 0.85);
-      border-bottom: 1px solid rgba($color: #42b983, $alpha: 0.6);
+      color: rgba($color: $color-primary, $alpha: 0.85);
+      border-bottom: 1px solid rgba($color: $color-primary, $alpha: 0.6);
     }
   }
 
   table {
-    display: inline-block !important;
     font-size: 12px;
-    max-width: 100%;
+    width: 100%;
     overflow: auto;
     border: solid 1px #f6f6f6;
     border-collapse: collapse;
@@ -131,6 +131,7 @@ $line-space: 1.6em;
   td {
     padding: 12px 6px;
     line-height: 24px;
+    border: 1px solid #eaeaea;
   }
   td {
     min-width: 120px;
@@ -140,14 +141,15 @@ $line-space: 1.6em;
     color: rgba($color: #34495e, $alpha: 0.95);
     padding: 1px 23px;
     margin: 22px 0;
-    border-left: 4px solid #42b983;
-    background-color: rgba($color: #42b983, $alpha: 0.1);
+    border-left: 4px solid $color-primary;
+    background-color: rgba($color: $color-primary, $alpha: 0.1);
     &::after {
       display: block;
       content: "";
     }
     & > p {
       margin: 10px 0;
+      font-size: 14px;
     }
   }
 
@@ -179,8 +181,74 @@ $line-space: 1.6em;
     padding-left: 0;
   }
 
+  .math {
+    &-inline {
+      margin-left: 8px;
+      margin-right: 8px;
+    }
+    .katex {
+      font: normal 1.21 em KaTeX_Main, Times New Roman, serif;
+      line-height: 1.2;
+      text-indent: 0;
+      text-rendering: auto;
+      border-color: currentColor;
+    }
+  }
+
   .task-list-item {
     list-style: none;
+    & input[type="checkbox"] {
+      position: relative;
+      border-radius: 2px;
+      box-sizing: border-box;
+      &::before,
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1000;
+        border-radius: 2px;
+        overflow: hidden;
+        box-sizing: border-box;
+      }
+      &::after {
+        border: 1px solid #cfcfcf;
+        z-index: 1;
+        width: 14px;
+        height: 14px;
+        background-color: #fff;
+      }
+      &::before {
+        z-index: 2;
+      }
+
+      &[checked] {
+        &::after {
+          display: inline-block;
+          border-color: $color-primary;
+          box-sizing: border-box;
+          background-color: $color-primary;
+          transition: border-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46),
+            background-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46);
+        }
+        &::before {
+          box-sizing: content-box;
+          border: 2px solid #fff;
+          border-left: 0;
+          border-top: 0;
+          height: 7px;
+          left: 4px;
+          position: absolute;
+          top: 1px;
+          transform: rotate(45deg) scaleY(1);
+          width: 3px;
+          transition: transform 0.15s ease-in 0.05s;
+          transform-origin: center;
+        }
+      }
+    }
   }
 
   @media (max-width: 720px) {
