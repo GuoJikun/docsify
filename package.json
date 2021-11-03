@@ -1,9 +1,9 @@
 {
-  "name": "juejin-markdown-theme-default",
+  "name": "juejin-markdown-theme-spring",
   "private": true,
   "license": "MIT",
   "scripts": {
-    "dev": "npx juejin-theme-devtool simplicity-green.scss"
+    "dev": "npx juejin-theme-devtool spring.scss"
   },
   "dependencies": {
     "bytemd": "^1.2.0"
